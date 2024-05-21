@@ -1,0 +1,48 @@
+body {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+  justify-content: center;
+  align-items: center;
+  /* background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/127738/unsplahBg2.jpg') no-repeat center / cover; */
+}
+
+.button-container ul {
+  padding: 0;
+}
+
+.button-container li {
+  display: inline-block;
+  list-style-type: none;
+  margin: 0 20px;
+}
+
+.button-container button {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 5px solid white;
+  color: white;
+  font-family: Verdana;
+  font-weight: bold;
+  font-size: 50px;
+  cursor: pointer;
+  padding: 0;
+  background: rebeccapurple;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.material-symbols-outlined {
+  font-size: 28px !important;
+}
+@media screen and (max-width: 420px) {
+  /* .button-container button {
+    width: 80px;
+    height: 80px;
+  } */
+  .button-container li {
+    margin: 0px 2px;
+  }
+}
