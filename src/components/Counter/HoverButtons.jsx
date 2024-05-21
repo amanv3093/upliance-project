@@ -1,8 +1,12 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import "./HoverButtons.css"; // Create this CSS file for the styles
-import { UseCustomContext } from "../../Context/Context";
-
+import { useSelector, useDispatch } from "react-redux";
+import {
+  incrementCount,
+  decrementCount,
+  resetCount,
+} from "../../Redux/Slices/CounterSlice";
 const HoverButton = ({ children, color }) => {
   const buttonRef = useRef(null);
 
@@ -80,22 +84,24 @@ const HoverButton = ({ children, color }) => {
 };
 
 const HoverButtons = () => {
-  const { count, setCount } = UseCustomContext();
+  const dispatch = useDispatch();
+  const count = useSelector((state) => state.counter.count);
   console.log(count);
+
   return (
     <div className="button-container">
       <ul>
-        <li onClick={() => setCount(count > 0 ? count - 1 : 0)}>
+        <li onClick={() => dispatch(decrementCount())}>
           <HoverButton color="#FF1654">
             <span className="material-symbols-outlined">remove</span>
           </HoverButton>
         </li>
-        <li onClick={() => setCount(0)}>
-          <HoverButton color="#247BA0" onClick={() => setCount(0)}>
+        <li onClick={() => dispatch(resetCount(1))}>
+          <HoverButton color="#247BA0">
             <span className="material-symbols-outlined">refresh</span>
           </HoverButton>
         </li>
-        <li onClick={() => setCount(count + 1)}>
+        <li onClick={() => dispatch(incrementCount())}>
           <HoverButton color="#FF1654">
             <span className="material-symbols-outlined">add</span>
           </HoverButton>
