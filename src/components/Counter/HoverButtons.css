@@ -1,10 +1,10 @@
-body {
+/* body {
   display: flex;
   height: 100vh;
   overflow: hidden;
   justify-content: center;
   align-items: center;
-}
+} */
 
 .button-container ul {
   padding: 0;
