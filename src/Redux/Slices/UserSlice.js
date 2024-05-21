@@ -16,31 +16,32 @@ const userSlice = createSlice({
   reducers: {
     setUser(state, action) {
       const { name, address, email, phone } = action.payload;
-      state.name = name;
-      state.address = address;
-      state.email = email;
-      state.phone = phone;
-      state.unsavedChanges = true;
+
+      state.user.name = name;
+      state.user.address = address;
+      state.user.email = email;
+      state.user.phone = phone;
+      state.user.unsavedChanges = true;
     },
     saveUser(state, action) {
       const { id, name, address, email, phone } = action.payload;
-      state.id = id;
-      state.name = name;
-      state.address = address;
-      state.email = email;
-      state.phone = phone;
-      state.unsavedChanges = false;
+      state.user.id = id;
+      state.user.name = name;
+      state.user.address = address;
+      state.user.email = email;
+      state.user.phone = phone;
+      state.user.unsavedChanges = false;
       localStorage.setItem("userData", JSON.stringify(state));
     },
     loadUser(state) {
       const savedData = JSON.parse(localStorage.getItem("userData"));
       if (savedData) {
-        state.id = savedData.id;
-        state.name = savedData.name;
-        state.address = savedData.address;
-        state.email = savedData.email;
-        state.phone = savedData.phone;
-        state.unsavedChanges = false;
+        state.user.id = savedData.id;
+        state.user.name = savedData.name;
+        state.user.address = savedData.address;
+        state.user.email = savedData.email;
+        state.user.phone = savedData.phone;
+        state.user.unsavedChanges = false;
       }
     },
   },
