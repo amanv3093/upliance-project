@@ -14,9 +14,9 @@ function Navbar() {
         <li>
           <NavLink to="/userForm">Form</NavLink>
         </li>
-        <li>
+        {/* <li>
           <NavLink to="/textEditor">Editor</NavLink>
-        </li>
+        </li> */}
         <li>
           {!checkLogin ? (
             <NavLink to="/login">Login</NavLink>
