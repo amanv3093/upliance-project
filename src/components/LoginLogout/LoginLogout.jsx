@@ -150,9 +150,14 @@ function LoginLogout() {
             <button type="submit">SignUp</button>
           )}
         </div>
-        <p>
-          Create a new account{" "}
-          <span onClick={() => setLoginOpen(!loginOpen)}>Click</span>
+        <p className="checkAccount">
+          {loginOpen ? "Create a new account " : "Already have an account? "}
+          <span
+            className="innerCheckAccount"
+            onClick={() => setLoginOpen(!loginOpen)}
+          >
+            {loginOpen ? "Click" : "Login here"}
+          </span>
         </p>
       </form>
       <div></div>

@@ -1,0 +1,17 @@
+.TextEditors {
+}
+.TextEditors-inner {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.quill {
+  width: 95%;
+}
+.ql-toolbar.ql-snow {
+  border: 1px solid black !important;
+}
+.ql-container.ql-snow {
+  border: 1px solid black !important;
+  border-top: none !important;
+}

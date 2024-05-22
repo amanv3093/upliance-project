@@ -57,6 +57,14 @@
   background-color: rgb(150, 18, 108);
 }
 
+.checkAccount {
+  font-size: 14px;
+}
+.innerCheckAccount {
+  color: #aa127a;
+  cursor: pointer;
+  font-weight: 600;
+}
 /*******************  Logout********************/
 .logout {
   display: flex;

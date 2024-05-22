@@ -12,11 +12,12 @@ function Logout() {
   let navigate = useNavigate();
   const dispatch = useDispatch();
 
+  /**************** SignOut ********** */
   async function SignOut() {
     try {
       await signOut(auth);
       dispatch(handelLoginSuccessful(false));
-      toastFun("You have successfully logged out.");
+      toastFun("You have successfully SignOut out.");
       setTimeout(() => {
         navigate("/");
       }, 2000);
@@ -24,7 +25,9 @@ function Logout() {
       toastFun(err);
     }
   }
+  /**************** End ****************/
 
+  /**************** toastFun ********** */
   function toastFun(e) {
     toast(e, {
       position: "top-right",
@@ -37,7 +40,7 @@ function Logout() {
       theme: "light",
     });
   }
-
+  /**************** End ****************/
   return (
     <div className="logout">
       <ToastContainer />
