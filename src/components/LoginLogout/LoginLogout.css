@@ -5,6 +5,7 @@
   align-items: center;
   justify-content: center;
   padding: 20px 0px;
+  animation: fadeIn 2s;
 }
 .LoginLogout-form {
   width: 23rem;
@@ -25,7 +26,7 @@
   display: flex;
   flex-direction: column;
 
-  gap: 15px;
+  gap: 35px;
 }
 .LoginLogout-input input {
   border: none;
@@ -40,7 +41,7 @@
 .LoginLogout-buttonBox {
   padding-top: 10px;
 }
-.LoginLogout-button {
+.LoginLogout-buttonBox button {
   background-color: #aa127a;
   width: fit-content;
   border: none;
@@ -51,7 +52,67 @@
   cursor: pointer;
   width: 100%;
 }
-.LoginLogout-button:hover {
+.LoginLogout-buttonBox button:hover {
+  transition: 0.5s ease-in;
+  background-color: rgb(150, 18, 108);
+}
+
+/*******************  Logout********************/
+.logout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 5rem;
+  justify-content: center;
+}
+
+.logout-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.logout-box h2 {
+}
+.logout-box p {
+  text-align: center;
+  color: gray;
+  padding: 15px 0px 25px 0px;
+}
+.logout-btn {
+  display: flex;
+  gap: 5px;
+}
+.logout-btn1 {
+  padding: 10px 15px;
+  border: none;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  background-color: #ededed;
+}
+.logout-btn1 a {
+  text-decoration: none;
+  color: #aa127a;
+  width: 100%;
+  height: 100%;
+}
+
+.logout-btn1:hover {
+  transition: 0.5s ease-in;
+  background-color: rgb(150, 18, 108);
+  color: white;
+}
+.logout-btn2 {
+  padding: 10px 15px;
+  background-color: #aa127a;
+  border: none;
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.logout-btn2:hover {
   transition: 0.5s ease-in;
   background-color: rgb(150, 18, 108);
 }

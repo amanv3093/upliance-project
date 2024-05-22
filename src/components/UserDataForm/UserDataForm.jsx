@@ -50,6 +50,7 @@ function UserDataForm() {
             <input
               label="Name"
               name="name"
+              type="text"
               value={userDetails.name}
               onChange={handleChange}
               placeholder="Your name"
@@ -59,6 +60,7 @@ function UserDataForm() {
             <input
               label="Address"
               name="address"
+              type="text"
               value={userDetails.address}
               onChange={handleChange}
               placeholder="Your Address"
@@ -68,6 +70,7 @@ function UserDataForm() {
             <input
               label="Email"
               name="email"
+              type="email"
               value={userDetails.email}
               onChange={handleChange}
               placeholder="Your Email"
@@ -77,6 +80,7 @@ function UserDataForm() {
             <input
               label="Phone no"
               name="phone"
+              type="number"
               value={userDetails.phone}
               onChange={handleChange}
               placeholder="Your PhoneNo"

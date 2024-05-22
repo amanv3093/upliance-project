@@ -7,7 +7,7 @@
   height: calc(100vh - 70px);
   transition: background-color 0.5s;
   font-family: "M PLUS Rounded 1c", sans-serif;
-  animation: fadeIn 1s;
+  animation: fadeIn 2s;
 }
 
 .counter-box {
