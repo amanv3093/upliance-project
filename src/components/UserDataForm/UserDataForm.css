@@ -1,0 +1,69 @@
+.userDataForm {
+  width: 100%;
+  height: calc(100vh - 70px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: fadeIn 1s;
+}
+.userForm {
+  background-color: #2e0249;
+  width: 80%;
+  height: 80vh;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  border-radius: 9px;
+}
+.user-text {
+  font-size: 45px;
+  display: flex;
+  flex-direction: column;
+  color: white;
+  font-weight: 900;
+}
+.formInner {
+  background-color: #eeeeee;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  height: 100%;
+  border-radius: 9px;
+  width: 22rem;
+}
+.AllInputBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 30px;
+}
+.AllInputBox input {
+  border: none;
+  border-bottom: 1px solid #aa127a;
+  padding: 10px;
+  outline: none;
+  font-size: 16px;
+  width: 100%;
+  background: transparent;
+  color: #2e0249;
+}
+.AllInputBox input::placeholder {
+  color: #2e0249;
+}
+.User-btn {
+  background-color: #aa127a;
+  width: fit-content;
+  border: none;
+  padding: 12px 35px;
+  font-size: 15px;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.User-btn:hover {
+  transition: 0.5s ease-in;
+  background-color: rgb(150, 18, 108);
+}

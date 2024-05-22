@@ -1,12 +1,12 @@
-import Counter from "./components/Counter/Counter";
 import "./App.css";
-import UserDataForm from "./components/UserDataForm/UserDataForm";
+import Navbar from "./components/Navbar/Navbar";
+import { Outlet } from "react-router-dom";
 
 function App() {
   return (
     <div className="app">
-      {/* <Counter /> */}
-      <UserDataForm />
+      <Navbar />
+      <Outlet />
     </div>
   );
 }

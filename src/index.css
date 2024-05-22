@@ -3,6 +3,16 @@
   padding: 0;
   box-sizing: border-box;
 }
-#root{
-  
+body {
+  overflow-x: hidden;
+  font-family: "M PLUS Rounded 1c", sans-serif;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }

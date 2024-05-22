@@ -1,0 +1,57 @@
+.LoginLogout-box {
+  width: 100%;
+  min-height: calc(100vh - 70px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 0px;
+}
+.LoginLogout-form {
+  width: 23rem;
+  background-color: white;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  border-radius: 9px;
+}
+.LoginLogout-text {
+}
+.LoginLogout-text h1 {
+}
+.LoginLogout-text p {
+}
+.LoginLogout-input {
+  display: flex;
+  flex-direction: column;
+
+  gap: 15px;
+}
+.LoginLogout-input input {
+  border: none;
+  border-bottom: 1px solid #aa127a;
+  padding: 10px;
+  outline: none;
+  font-size: 16px;
+  width: 100%;
+  background: transparent;
+  color: #2e0249;
+}
+.LoginLogout-buttonBox {
+  padding-top: 10px;
+}
+.LoginLogout-button {
+  background-color: #aa127a;
+  width: fit-content;
+  border: none;
+  padding: 12px 35px;
+  font-size: 15px;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  width: 100%;
+}
+.LoginLogout-button:hover {
+  transition: 0.5s ease-in;
+  background-color: rgb(150, 18, 108);
+}
