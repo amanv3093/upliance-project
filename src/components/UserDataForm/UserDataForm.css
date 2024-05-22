@@ -1,6 +1,6 @@
 .userDataForm {
   width: 100%;
-  height: calc(100vh - 70px);
+  min-height: calc(100vh - 70px);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -66,4 +66,26 @@
 .User-btn:hover {
   transition: 0.5s ease-in;
   background-color: rgb(150, 18, 108);
+}
+@media screen and (max-width: 550px) {
+  .user-text {
+    /* display: none; */
+  }
+  .userForm {
+    width: 90%;
+    flex-direction: column;
+    height: auto !important;
+    align-items: normal;
+  }
+  .formInner {
+    width: 100%;
+  }
+  .AllInputBox {
+    padding-bottom: 1rem;
+  }
+}
+@media screen and (min-width: 551px) and (max-width: 920px) {
+  .userForm {
+    width: 95%;
+  }
 }

@@ -43,25 +43,27 @@ function Logout() {
   /**************** End ****************/
   return (
     <div className="logout">
-      <ToastContainer />
-      <NavLink to="/">
-        <img src={navLogo} className="nav-logo" alt="Navigation Logo" />
-      </NavLink>
       <div className="logout-box">
-        <h2>See you soon!</h2>
-        <p>
-          You are about to logout.
-          <br />
-          Are you sure this is what <br />
-          you want?
-        </p>
-        <div className="logout-btn">
-          <NavLink to="/">
-            <button className="logout-btn1">Cancel</button>
-          </NavLink>
-          <button className="logout-btn2" onClick={SignOut}>
-            Confirm Logout
-          </button>
+        <ToastContainer />
+        <NavLink to="/">
+          <img src={navLogo} className="nav-logo" alt="Navigation Logo" />
+        </NavLink>
+        <div className="logout-box">
+          <h2>See you soon!</h2>
+          <p>
+            You are about to logout.
+            <br />
+            Are you sure this is what <br />
+            you want?
+          </p>
+          <div className="logout-btn">
+            <NavLink to="/">
+              <button className="logout-btn1">Cancel</button>
+            </NavLink>
+            <button className="logout-btn2" onClick={SignOut}>
+              Confirm Logout
+            </button>
+          </div>
         </div>
       </div>
     </div>

@@ -9,7 +9,8 @@
 }
 .LoginLogout-form {
   width: 23rem;
-  background-color: white;
+  background-color: #2e0249;
+  color: white;
   padding: 20px;
   display: flex;
   flex-direction: column;
@@ -36,7 +37,10 @@
   font-size: 16px;
   width: 100%;
   background: transparent;
-  color: #2e0249;
+  color: white;
+}
+.LoginLogout-input input::placeholder {
+  color: white;
 }
 .LoginLogout-buttonBox {
   padding-top: 10px;
@@ -70,7 +74,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 5rem;
+  padding-top: 6rem;
   justify-content: center;
 }
 
@@ -81,6 +85,8 @@
   justify-content: center;
 }
 .logout-box h2 {
+  color: white;
+  font-size: 30px;
 }
 .logout-box p {
   text-align: center;
@@ -123,4 +129,9 @@
 .logout-btn2:hover {
   transition: 0.5s ease-in;
   background-color: rgb(150, 18, 108);
+}
+.logout-box {
+  background-color: #2e0249;
+  padding: 20px;
+  border-radius: 9px;
 }

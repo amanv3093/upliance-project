@@ -12,6 +12,7 @@ import { handelLoginSuccessful } from "../../Redux/Slices/CounterSlice";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
 let SignUpFun = (state, action) => {
   if (action.type === "email") {
     return { ...state, email: action.payload };
@@ -35,14 +36,21 @@ let loginFun = (state, action) => {
 
 function LoginLogout() {
   let [loginOpen, setLoginOpen] = useState(true);
-  let [signUpDetails, signUpDispatch] = useReducer(SignUpFun, null);
-  let [loginDetails, loginDispatch] = useReducer(loginFun, null);
+  let [signUpDetails, signUpDispatch] = useReducer(SignUpFun, {
+    email: "",
+    password: "",
+  });
+  let [loginDetails, loginDispatch] = useReducer(loginFun, {
+    email: "",
+    password: "",
+  });
   const auth = getAuth(app);
   let navigate = useNavigate();
   const dispatch = useDispatch();
+  console.log(loginDetails);
+  console.log(signUpDetails);
 
   /****************  createUserWithEmailAndPassword *******************/
-  console.log(signUpDetails);
   async function signUpFun(e) {
     e.preventDefault();
     let signUpEmail = signUpDetails.email;
@@ -57,7 +65,7 @@ function LoginLogout() {
         navigate("/");
       }, 2000);
     } catch (error) {
-      toastFun(error);
+      toastFun(error.message);
     }
   }
   /***************************      End      **********************************/
@@ -71,19 +79,19 @@ function LoginLogout() {
     try {
       await signInWithEmailAndPassword(auth, email, password);
       dispatch(handelLoginSuccessful(true));
-      toastFun("You have successfully Login.");
+      toastFun("You have successfully logged in.");
       setTimeout(() => {
         navigate("/");
       }, 2000);
     } catch (error) {
-      toastFun(error);
+      toastFun(error.message);
     }
   }
   /***************************      End      **********************************/
 
   /***************************      toastify-Function       **********************************/
-  function toastFun(e) {
-    toast(e, {
+  function toastFun(message) {
+    toast(message, {
       position: "top-right",
       autoClose: 2000,
       hideProgressBar: false,
@@ -115,6 +123,7 @@ function LoginLogout() {
                 onChange={(e) =>
                   loginDispatch({ type: "email", payload: e.target.value })
                 }
+                value={loginDetails.email}
               />
               <input
                 type="password"
@@ -122,6 +131,7 @@ function LoginLogout() {
                 onChange={(e) =>
                   loginDispatch({ type: "password", payload: e.target.value })
                 }
+                value={loginDetails.password}
               />
             </>
           ) : (
@@ -132,6 +142,7 @@ function LoginLogout() {
                 onChange={(e) =>
                   signUpDispatch({ type: "email", payload: e.target.value })
                 }
+                value={signUpDetails.email}
               />
               <input
                 type="password"
@@ -139,6 +150,7 @@ function LoginLogout() {
                 onChange={(e) =>
                   signUpDispatch({ type: "password", payload: e.target.value })
                 }
+                value={signUpDetails.password}
               />
             </>
           )}
@@ -147,7 +159,7 @@ function LoginLogout() {
           {loginOpen ? (
             <button type="submit">Login</button>
           ) : (
-            <button type="submit">SignUp</button>
+            <button type="submit">Sign Up</button>
           )}
         </div>
         <p className="checkAccount">
