@@ -2,7 +2,7 @@ import navLogo from "../../assets/7152b079-f35b-4d25-ac2b-2cec99340c13.png";
 import { NavLink, useNavigate } from "react-router-dom";
 import "./LoginLogout.css";
 import { getAuth, signOut } from "firebase/auth";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { handelLoginSuccessful } from "../../Redux/Slices/CounterSlice";
 
 import { ToastContainer, toast } from "react-toastify";

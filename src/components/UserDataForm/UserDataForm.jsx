@@ -1,59 +1,85 @@
 import { nanoid } from "nanoid";
-import { Button, TextField } from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
 import { setUser, saveUser, loadUser } from "../../Redux/Slices/UserSlice";
 import { useEffect, useState } from "react";
-import "./UserDataForm.css";
 import { useNavigate } from "react-router-dom";
+import "./UserDataForm.css";
+
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 function UserDataForm() {
   const dispatch = useDispatch();
   const userDetails = useSelector((state) => state.UserData.user);
   const [checkSave, setCheckSave] = useState(false);
-  const navigate = useNavigate();
-  // useEffect(() => {
-  //   dispatch(loadUser());
+  const [unsavedChanges, setUnsavedChanges] = useState(false);
 
-  //   const handleBeforeUnload = (e) => {
-  //     if (userDetails.unsavedChanges) {
-  //       e.preventDefault();
-  //       e.returnValue = "";
-  //     }
-  //   };
+  const checkLogin = useSelector((state) => state.counter.LoginSuccessful);
+  let navigate = useNavigate();
+  useEffect(() => {
+    dispatch(loadUser());
 
-  //   window.addEventListener("beforeunload", handleBeforeUnload);
+    const handleBeforeUnload = (e) => {
+      if (unsavedChanges) {
+        e.preventDefault();
+        e.returnValue = "";
+      }
+    };
 
-  //   return () => {
-  //     window.removeEventListener("beforeunload", handleBeforeUnload);
-  //   };
-  // }, [dispatch, userDetails.unsavedChanges]);
+    window.addEventListener("beforeunload", handleBeforeUnload);
+
+    return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+    };
+  }, [dispatch, unsavedChanges]);
 
   const handleChange = (e) => {
-    console.log("run");
     const { name, value } = e.target;
     dispatch(setUser({ ...userDetails, [name]: value }));
+    setUnsavedChanges(true);
   };
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    const userId = userDetails.id || nanoid();
-    dispatch(saveUser({ ...userDetails, id: userId }));
-    setTimeout(() => {
-      setCheckSave(true);
-    }, 2000);
+    if (checkLogin) {
+      const userId = userDetails.id || nanoid();
+      dispatch(saveUser({ ...userDetails, id: userId }));
+      setUnsavedChanges(false);
+      toastFun("Save Data successfully.");
+      setTimeout(() => {
+        setCheckSave(true);
+      }, 2000);
+    } else {
+      navigate("/login");
+    }
   };
+
   const handleFormSubmit2 = (e) => {
     e.preventDefault();
-
+    toastFun("Save Data successfully.");
     setTimeout(() => {
       navigate("/");
     }, 2000);
   };
-  console.log(userDetails);
+  function toastFun(message) {
+    toast(message, {
+      position: "top-right",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+  }
+
   return (
     <form
       onSubmit={checkSave ? handleFormSubmit2 : handleFormSubmit}
       className="userDataForm"
     >
+      <ToastContainer />
       <div className="userForm">
         <div className="user-text">
           <span>User</span>
@@ -74,7 +100,6 @@ function UserDataForm() {
                   placeholder="Your Address"
                   required
                 />
-
                 <input
                   label="Email"
                   name="email"
@@ -84,7 +109,6 @@ function UserDataForm() {
                   placeholder="Your Email"
                   required
                 />
-
                 <input
                   label="Phone no"
                   name="phone"
@@ -119,7 +143,6 @@ function UserDataForm() {
             )}
           </div>
           <button className="User-btn" type="submit">
-            {" "}
             Save User Data
           </button>
         </div>

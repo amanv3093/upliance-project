@@ -4,6 +4,7 @@ import {
   getAuth,
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
+  updateProfile,
 } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import app from "../../firebase/Firebase";
@@ -12,9 +13,12 @@ import { handelLoginSuccessful } from "../../Redux/Slices/CounterSlice";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { setUser } from "../../Redux/Slices/UserSlice";
 
 let SignUpFun = (state, action) => {
-  if (action.type === "email") {
+  if (action.type === "name") {
+    return { ...state, name: action.payload };
+  } else if (action.type === "email") {
     return { ...state, email: action.payload };
   } else if (action.type === "password") {
     return { ...state, password: action.payload };
@@ -24,7 +28,6 @@ let SignUpFun = (state, action) => {
 };
 
 let loginFun = (state, action) => {
-  console.log(action.type);
   if (action.type === "email") {
     return { ...state, email: action.payload };
   } else if (action.type === "password") {
@@ -36,7 +39,9 @@ let loginFun = (state, action) => {
 
 function LoginLogout() {
   let [loginOpen, setLoginOpen] = useState(true);
+
   let [signUpDetails, signUpDispatch] = useReducer(SignUpFun, {
+    name: "",
     email: "",
     password: "",
   });
@@ -53,21 +58,41 @@ function LoginLogout() {
   /****************  createUserWithEmailAndPassword *******************/
   async function signUpFun(e) {
     e.preventDefault();
+    let displayName = signUpDetails.name;
     let signUpEmail = signUpDetails.email;
     let signUpPassword = signUpDetails.password;
+
     try {
-      await createUserWithEmailAndPassword(auth, signUpEmail, signUpPassword);
-      await signInWithEmailAndPassword(auth, signUpEmail, signUpPassword);
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        signUpEmail,
+        signUpPassword
+      );
+      const user = userCredential.user;
+      await updateProfile(user, { displayName: displayName });
+
+      let result = await signInWithEmailAndPassword(
+        auth,
+        signUpEmail,
+        signUpPassword
+      );
+
+      console.log(result);
+      const detail = result.user.providerData[0];
+      dispatch(setUser({ name: detail.displayName, email: detail.email }));
       dispatch(handelLoginSuccessful(true));
 
       toastFun("Sign-up completed successfully.");
+
       setTimeout(() => {
-        navigate("/");
+        navigate("/userForm");
       }, 2000);
     } catch (error) {
+      // Show error toast
       toastFun(error.message);
     }
   }
+
   /***************************      End      **********************************/
 
   /****************  LoginWithEmailAndPassword *******************/
@@ -77,11 +102,12 @@ function LoginLogout() {
     let password = loginDetails.password;
 
     try {
-      await signInWithEmailAndPassword(auth, email, password);
+      let res = await signInWithEmailAndPassword(auth, email, password);
+      console.log(res);
       dispatch(handelLoginSuccessful(true));
       toastFun("You have successfully logged in.");
       setTimeout(() => {
-        navigate("/");
+        navigate("/userForm");
       }, 2000);
     } catch (error) {
       toastFun(error.message);
@@ -136,6 +162,14 @@ function LoginLogout() {
             </>
           ) : (
             <>
+              <input
+                type="text"
+                placeholder="Enter your Name"
+                onChange={(e) =>
+                  signUpDispatch({ type: "name", payload: e.target.value })
+                }
+                value={signUpDetails.name}
+              />
               <input
                 type="email"
                 placeholder="Enter the Email"

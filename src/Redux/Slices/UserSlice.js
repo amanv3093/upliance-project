@@ -1,4 +1,3 @@
-// src/features/user/userSlice.js
 import { createSlice } from "@reduxjs/toolkit";
 
 const userSlice = createSlice({
@@ -10,42 +9,44 @@ const userSlice = createSlice({
       address: "",
       email: "",
       phone: "",
+      content: [],
       unsavedChanges: false,
     },
   },
   reducers: {
     setUser(state, action) {
       const { name, address, email, phone } = action.payload;
-
       state.user.name = name;
       state.user.address = address;
       state.user.email = email;
       state.user.phone = phone;
       state.user.unsavedChanges = true;
     },
+    setUserContent(state, action) {
+      console.log(action.payload.content);
+      state.user.content = action.payload.content;
+      state.user.unsavedChanges = true;
+    },
     saveUser(state, action) {
-      const { id, name, address, email, phone } = action.payload;
+      const { id, name, address, email, phone, content } = action.payload;
       state.user.id = id;
       state.user.name = name;
       state.user.address = address;
       state.user.email = email;
       state.user.phone = phone;
+      state.user.content = content;
       state.user.unsavedChanges = false;
-      localStorage.setItem("userData", JSON.stringify(state));
+      localStorage.setItem("userData", JSON.stringify(state.user));
     },
     loadUser(state) {
       const savedData = JSON.parse(localStorage.getItem("userData"));
       if (savedData) {
-        state.user.id = savedData.id;
-        state.user.name = savedData.name;
-        state.user.address = savedData.address;
-        state.user.email = savedData.email;
-        state.user.phone = savedData.phone;
-        state.user.unsavedChanges = false;
+        state.user = { ...savedData, unsavedChanges: false };
       }
     },
   },
 });
 
-export const { setUser, saveUser, loadUser } = userSlice.actions;
+export const { setUser, setUserContent, saveUser, loadUser } =
+  userSlice.actions;
 export default userSlice.reducer;
