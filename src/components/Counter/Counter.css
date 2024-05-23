@@ -2,12 +2,13 @@
 .counter {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  /* align-items: center; */
   padding-top: 4.5rem;
   min-height: calc(100vh - 70px);
   transition: background-color 0.5s;
   font-family: "M PLUS Rounded 1c", sans-serif;
   animation: fadeIn 2s;
+  padding: 20px;
 }
 
 .counter-box {
@@ -35,4 +36,12 @@
   border-radius: 35px !important;
   padding: 10px 40px;
   background-color: greenyellow;
+}
+.counter-box1 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.counter-box1-inner h1 {
+  text-align: center;
 }
