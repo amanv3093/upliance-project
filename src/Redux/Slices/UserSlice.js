@@ -9,7 +9,7 @@ const userSlice = createSlice({
       address: "",
       email: "",
       phone: "",
-      content: [],
+      content: "",
       unsavedChanges: false,
     },
   },
@@ -23,7 +23,6 @@ const userSlice = createSlice({
       state.user.unsavedChanges = true;
     },
     setUserContent(state, action) {
-      console.log(action.payload.content);
       state.user.content = action.payload.content;
       state.user.unsavedChanges = true;
     },

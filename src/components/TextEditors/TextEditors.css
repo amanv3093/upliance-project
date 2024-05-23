@@ -1,3 +1,24 @@
+.quill-box22 {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.quill-button {
+  background-color: #aa127a;
+  border: none;
+  padding: 12px 35px;
+  font-size: 15px;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+.quill-button:hover {
+  transition: 0.5s ease-in;
+  background-color: rgb(150, 18, 108);
+}
 .TextEditors {
 }
 .TextEditors-inner {

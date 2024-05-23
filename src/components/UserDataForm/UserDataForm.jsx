@@ -1,10 +1,14 @@
 import { nanoid } from "nanoid";
 import { useSelector, useDispatch } from "react-redux";
-import { setUser, saveUser, loadUser } from "../../Redux/Slices/UserSlice";
+import {
+  setUser,
+  saveUser,
+  loadUser,
+  setUserContent,
+} from "../../Redux/Slices/UserSlice";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./UserDataForm.css";
-
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -13,9 +17,9 @@ function UserDataForm() {
   const userDetails = useSelector((state) => state.UserData.user);
   const [checkSave, setCheckSave] = useState(false);
   const [unsavedChanges, setUnsavedChanges] = useState(false);
-
   const checkLogin = useSelector((state) => state.counter.LoginSuccessful);
   let navigate = useNavigate();
+
   useEffect(() => {
     dispatch(loadUser());
 
@@ -43,7 +47,18 @@ function UserDataForm() {
     e.preventDefault();
     if (checkLogin) {
       const userId = userDetails.id || nanoid();
-      dispatch(saveUser({ ...userDetails, id: userId }));
+      const combinedContent = `
+        <p><strong>Name:</strong> ${userDetails.name}</p>
+        <p><strong>Address:</strong> ${userDetails.address}</p>
+        <p><strong>Email:</strong> ${userDetails.email}</p>
+        <p><strong>Phone:</strong> ${userDetails.phone}</p>
+      `;
+      dispatch(
+        setUserContent({ content: combinedContent, unsavedChanges: true })
+      );
+      dispatch(
+        saveUser({ ...userDetails, id: userId, content: combinedContent })
+      );
       setUnsavedChanges(false);
       toastFun("Save Data successfully.");
       setTimeout(() => {
@@ -58,9 +73,10 @@ function UserDataForm() {
     e.preventDefault();
     toastFun("Save Data successfully.");
     setTimeout(() => {
-      navigate("/");
+      navigate("/textEditor");
     }, 2000);
   };
+
   function toastFun(message) {
     toast(message, {
       position: "top-right",

@@ -16,3 +16,6 @@
   color: white;
   padding-top: 8px;
 }
+.UserDetails-anchor {
+  text-decoration: none;
+}

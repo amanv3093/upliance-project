@@ -45,3 +45,15 @@
 .counter-box1-inner h1 {
   text-align: center;
 }
+@media screen and (max-width: 800px) {
+  .counter-box1 {
+    flex-direction: column;
+  }
+  .button-container button {
+    width: 80px !important;
+    height: 80px !important;
+  }
+  .UserDetails {
+    margin-top: 10px;
+  }
+}
