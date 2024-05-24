@@ -53,9 +53,7 @@ function UserDataForm() {
         <p><strong>Email:</strong> ${userDetails.email}</p>
         <p><strong>Phone:</strong> ${userDetails.phone}</p>
       `;
-      dispatch(
-        setUserContent({ content: combinedContent, unsavedChanges: true })
-      );
+      dispatch(setUserContent({ content: combinedContent }));
       dispatch(
         saveUser({ ...userDetails, id: userId, content: combinedContent })
       );
@@ -101,7 +99,7 @@ function UserDataForm() {
           <span>User</span>
           <span style={{ color: "#e2173b" }}>Information</span>
           <span>Collection</span>
-          <span>Form!</span>{" "}
+          <span>Form!</span>
         </div>
         <div className="formInner">
           <div className="AllInputBox">

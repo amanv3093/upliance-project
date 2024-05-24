@@ -19,3 +19,12 @@
 .UserDetails-anchor {
   text-decoration: none;
 }
+.hidden-details {
+  padding-top: 10px;
+}
+.hidden-details p {
+  color: white;
+}
+
+.hidden-details strong {
+}

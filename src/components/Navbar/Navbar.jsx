@@ -12,12 +12,14 @@ function Navbar() {
 
       <ul>
         <li>
-          <NavLink to="/userForm">Form</NavLink>
+          <NavLink to="/userForm" className="top-h">
+            Registration
+          </NavLink>
         </li>
         {/* <li>
           <NavLink to="/textEditor">Editor</NavLink>
         </li> */}
-        <li>
+        <li className="top-h">
           {!checkLogin ? (
             <NavLink to="/login">Login</NavLink>
           ) : (

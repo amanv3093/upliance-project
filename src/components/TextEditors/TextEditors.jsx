@@ -5,13 +5,15 @@ import { useSelector, useDispatch } from "react-redux";
 import { setUserContent, saveUser } from "../../Redux/Slices/UserSlice.js";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import "./TextEditors.css";
 import { useNavigate } from "react-router-dom";
+import "./TextEditors.css";
+
 const TextEditor = () => {
   const dispatch = useDispatch();
   const userContent = useSelector((state) => state.UserData.user);
   const [content, setContent] = useState("");
   let navigate = useNavigate();
+
   useEffect(() => {
     if (userContent?.content) {
       setContent(userContent.content);
@@ -20,16 +22,17 @@ const TextEditor = () => {
 
   const handleChange = (value) => {
     setContent(value);
-    dispatch(setUserContent({ content: value, unsavedChanges: true }));
+    dispatch(setUserContent({ content: value }));
   };
 
   const handleSave = () => {
-    toastFun("Save  successfully.");
+    toastFun("Save successfully.");
     dispatch(saveUser({ ...userContent, content }));
     setTimeout(() => {
       navigate("/");
     }, 2000);
   };
+
   function toastFun(message) {
     toast(message, {
       position: "top-right",
@@ -42,11 +45,11 @@ const TextEditor = () => {
       theme: "light",
     });
   }
+
   return (
     <div className="quill-box22">
       <ToastContainer />
       <ReactQuill value={content} onChange={handleChange} />
-
       <button className="quill-button" onClick={handleSave}>
         Save
       </button>

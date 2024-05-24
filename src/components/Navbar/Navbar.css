@@ -17,9 +17,33 @@ header ul li {
 }
 header ul li a {
   text-decoration: none;
-  font-size: 20px;
+  animation-name: colorchanger;
+  animation-duration: 10s; /* Change Duration */
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
 }
 
 .hidden-logout {
   position: absolute;
+}
+.top-h {
+  font-size: max(2.3vw, 18px);
+  font-weight: 700;
+}
+@keyframes colorchanger {
+  0% {
+    color: #ee6055;
+  }
+
+  25% {
+    color: #60d394;
+  }
+
+  50% {
+    color: #aaf683;
+  }
+
+  75% {
+    color: #ffd97d;
+  }
 }
