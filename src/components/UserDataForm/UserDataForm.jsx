@@ -63,7 +63,10 @@ function UserDataForm() {
         setCheckSave(true);
       }, 2000);
     } else {
-      navigate("/login");
+      toastFun("Login first");
+      setTimeout(() => {
+        navigate("/login");
+      }, 2000);
     }
   };
 
