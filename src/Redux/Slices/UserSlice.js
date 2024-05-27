@@ -16,11 +16,7 @@ const userSlice = createSlice({
   reducers: {
     setUser(state, action) {
       const { name, address, email, phone } = action.payload;
-      state.user.name = name;
-      state.user.address = address;
-      state.user.email = email;
-      state.user.phone = phone;
-      state.user.unsavedChanges = true;
+      state.user = { ...state.user, name, address, email, phone, unsavedChanges: true };
     },
     setUserContent(state, action) {
       state.user.content = action.payload.content;
@@ -28,13 +24,7 @@ const userSlice = createSlice({
     },
     saveUser(state, action) {
       const { id, name, address, email, phone, content } = action.payload;
-      state.user.id = id;
-      state.user.name = name;
-      state.user.address = address;
-      state.user.email = email;
-      state.user.phone = phone;
-      state.user.content = content;
-      state.user.unsavedChanges = false;
+      state.user = { id, name, address, email, phone, content, unsavedChanges: false };
       localStorage.setItem("userData", JSON.stringify(state.user));
     },
     loadUser(state) {
@@ -46,6 +36,5 @@ const userSlice = createSlice({
   },
 });
 
-export const { setUser, setUserContent, saveUser, loadUser } =
-  userSlice.actions;
+export const { setUser, setUserContent, saveUser, loadUser } = userSlice.actions;
 export default userSlice.reducer;

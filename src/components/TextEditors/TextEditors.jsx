@@ -10,7 +10,7 @@ import "./TextEditors.css";
 
 const TextEditor = () => {
   const dispatch = useDispatch();
-  const userContent = useSelector((state) => state.UserData.user);
+  const userContent = useSelector((state) => state.UserData.user); // Correctly accessing UserData
   const [content, setContent] = useState("");
   let navigate = useNavigate();
 

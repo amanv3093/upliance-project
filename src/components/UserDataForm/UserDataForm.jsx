@@ -14,7 +14,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 function UserDataForm() {
   const dispatch = useDispatch();
-  const userDetails = useSelector((state) => state.UserData.user);
+  const userDetails = useSelector((state) => state.UserData.user); // Correctly accessing UserData
   const [checkSave, setCheckSave] = useState(false);
   const [unsavedChanges, setUnsavedChanges] = useState(false);
   const checkLogin = useSelector((state) => state.counter.LoginSuccessful);
@@ -147,13 +147,14 @@ function UserDataForm() {
                   placeholder="Your name"
                   required
                 />
+
                 <input
-                  label="Name"
-                  name="Uid"
+                  label="ID"
+                  name="id"
                   type="text"
                   readOnly
                   value={userDetails.id}
-                  onChange={handleChange}
+                  placeholder="User ID"
                   required
                 />
               </>
