@@ -1,4 +1,4 @@
-import { nanoid } from "nanoid";
+import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
   setUser,
@@ -6,7 +6,7 @@ import {
   loadUser,
   setUserContent,
 } from "../../Redux/Slices/UserSlice";
-import { useEffect, useState } from "react";
+import { nanoid } from "nanoid";
 import { useNavigate } from "react-router-dom";
 import "./UserDataForm.css";
 import { ToastContainer, toast } from "react-toastify";
@@ -14,10 +14,9 @@ import "react-toastify/dist/ReactToastify.css";
 
 function UserDataForm() {
   const dispatch = useDispatch();
-  const userDetails = useSelector((state) => state.UserData.user); // Correctly accessing UserData
+  const userDetails = useSelector((state) => state.UserData.user);
   const [checkSave, setCheckSave] = useState(false);
   const [unsavedChanges, setUnsavedChanges] = useState(false);
-  const checkLogin = useSelector((state) => state.counter.LoginSuccessful);
   let navigate = useNavigate();
 
   useEffect(() => {
@@ -48,12 +47,12 @@ function UserDataForm() {
 
     const userId = userDetails.id || nanoid();
     const combinedContent = `
-        <p><strong>Name:</strong> ${userDetails.name}</p>
-        <p><strong>Address:</strong> ${userDetails.address}</p>
-        <p><strong>Email:</strong> ${userDetails.email}</p>
-        <p><strong>Phone:</strong> ${userDetails.phone}</p>
-        <p><strong>user-id:</strong> ${userDetails.id}</p>
-      `;
+     
+      <p><strong>Address:</strong> ${userDetails.address}</p>
+      <p><strong>Email:</strong> ${userDetails.email}</p>
+      <p><strong>Phone:</strong> ${userDetails.phone}</p>
+      <p><strong>User ID:</strong> ${userId}</p>
+    `;
     dispatch(setUserContent({ content: combinedContent }));
     dispatch(
       saveUser({ ...userDetails, id: userId, content: combinedContent })
@@ -63,12 +62,6 @@ function UserDataForm() {
     setTimeout(() => {
       setCheckSave(true);
     }, 2000);
-    // } else {
-    //   toastFun("Login first");
-    //   setTimeout(() => {
-    //     navigate("/login");
-    //   }, 2000);
-    // }
   };
 
   const handleFormSubmit2 = (e) => {
@@ -110,7 +103,6 @@ function UserDataForm() {
             {!checkSave ? (
               <>
                 <input
-                  label="Address"
                   name="address"
                   type="text"
                   value={userDetails.address}
@@ -119,7 +111,6 @@ function UserDataForm() {
                   required
                 />
                 <input
-                  label="Email"
                   name="email"
                   type="email"
                   value={userDetails.email}
@@ -128,7 +119,6 @@ function UserDataForm() {
                   required
                 />
                 <input
-                  label="Phone no"
                   name="phone"
                   type="number"
                   value={userDetails.phone}
@@ -140,7 +130,6 @@ function UserDataForm() {
             ) : (
               <>
                 <input
-                  label="Name"
                   name="name"
                   type="text"
                   value={userDetails.name}
@@ -148,9 +137,7 @@ function UserDataForm() {
                   placeholder="Your name"
                   required
                 />
-
                 <input
-                  label="ID"
                   name="id"
                   type="text"
                   readOnly

@@ -16,6 +16,7 @@ const TextEditor = () => {
 
   useEffect(() => {
     if (userContent?.content) {
+      console.log("User Content:", userContent); // Debugging: Check the content
       setContent(userContent.content);
     }
   }, [userContent]);
@@ -49,6 +50,16 @@ const TextEditor = () => {
   return (
     <div className="quill-box22">
       <ToastContainer />
+      {userContent.name && (
+        <p>
+          <strong>Name:</strong> {userContent.name}
+        </p>
+      )}
+      {userContent.id && (
+        <p>
+          <strong>ID:</strong> {userContent.id}
+        </p>
+      )}
       <ReactQuill value={content} onChange={handleChange} />
       <button className="quill-button" onClick={handleSave}>
         Save
