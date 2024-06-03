@@ -45,29 +45,30 @@ function UserDataForm() {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    if (checkLogin) {
-      const userId = userDetails.id || nanoid();
-      const combinedContent = `
+
+    const userId = userDetails.id || nanoid();
+    const combinedContent = `
         <p><strong>Name:</strong> ${userDetails.name}</p>
         <p><strong>Address:</strong> ${userDetails.address}</p>
         <p><strong>Email:</strong> ${userDetails.email}</p>
         <p><strong>Phone:</strong> ${userDetails.phone}</p>
+        <p><strong>user-id:</strong> ${userDetails.id}</p>
       `;
-      dispatch(setUserContent({ content: combinedContent }));
-      dispatch(
-        saveUser({ ...userDetails, id: userId, content: combinedContent })
-      );
-      setUnsavedChanges(false);
-      toastFun("Save Data successfully.");
-      setTimeout(() => {
-        setCheckSave(true);
-      }, 2000);
-    } else {
-      toastFun("Login first");
-      setTimeout(() => {
-        navigate("/login");
-      }, 2000);
-    }
+    dispatch(setUserContent({ content: combinedContent }));
+    dispatch(
+      saveUser({ ...userDetails, id: userId, content: combinedContent })
+    );
+    setUnsavedChanges(false);
+    toastFun("Save Data successfully.");
+    setTimeout(() => {
+      setCheckSave(true);
+    }, 2000);
+    // } else {
+    //   toastFun("Login first");
+    //   setTimeout(() => {
+    //     navigate("/login");
+    //   }, 2000);
+    // }
   };
 
   const handleFormSubmit2 = (e) => {

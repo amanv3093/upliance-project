@@ -28,11 +28,16 @@
 }
 .quill {
   width: 95%;
+  border: 1px solid #aa127a;
+  color: #aa127a;
+  min-height: 60vh;
 }
 .ql-toolbar.ql-snow {
-  border: 1px solid black !important;
+  border: 1px solid #aa127a !important;
+  height: 30%;
 }
 .ql-container.ql-snow {
-  border: 1px solid black !important;
+  border: 1px solid #aa127a !important;
   border-top: none !important;
+  min-height: calc(60vh - 42px);
 }

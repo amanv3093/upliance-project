@@ -17,10 +17,22 @@ header ul li {
 }
 header ul li a {
   text-decoration: none;
-  animation-name: colorchanger;
-  animation-duration: 10s; /* Change Duration */
-  animation-iteration-count: infinite;
-  animation-direction: alternate;
+  position: relative;
+  color: #aa127a;
+}
+header ul li a::after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #aa127a;
+  transition: width 1s ease;
+}
+
+header ul li a:hover::after {
+  width: 100%;
 }
 
 .hidden-logout {
@@ -29,21 +41,4 @@ header ul li a {
 .top-h {
   font-size: max(2.3vw, 18px);
   font-weight: 700;
-}
-@keyframes colorchanger {
-  0% {
-    color: #ee6055;
-  }
-
-  25% {
-    color: #60d394;
-  }
-
-  50% {
-    color: #aaf683;
-  }
-
-  75% {
-    color: #ffd97d;
-  }
 }

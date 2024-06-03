@@ -6,7 +6,7 @@ function Navbar() {
   let checkLogin = useSelector((state) => state.counter.LoginSuccessful);
   return (
     <header>
-      <NavLink to="/">
+      <NavLink to="/" style={{ paddingLeft: "1rem" }}>
         <img src={navLogo} className="nav-logo" />
       </NavLink>
 
@@ -16,9 +16,11 @@ function Navbar() {
             Registration
           </NavLink>
         </li>
-        {/* <li>
-          <NavLink to="/textEditor">Editor</NavLink>
-        </li> */}
+        <li>
+          <NavLink className="top-h" to="/textEditor">
+            Editor
+          </NavLink>
+        </li>
         <li className="top-h">
           {!checkLogin ? (
             <NavLink to="/login">Login</NavLink>
